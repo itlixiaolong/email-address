@@ -1,0 +1,33 @@
+{
+  "name": "email-address",
+  "version": "1.0.1",
+  "description": "A can inserted, edited, saved based on vue2.0, similar to QQ mailbox, 163 mailbox email address component",
+  "keywords": [
+    "email",
+    "QQ mailbox",
+    "email-address",
+    "email-component",
+    "edited email"
+  ],
+  "main": "dist/EmailAddress.umd.min.js",
+  "scripts": {
+    "serve": "vue serve",
+    "build": "vue-cli-service build --target lib --name EmailAddress  src/index.js",
+    "test": "npm run test"
+  },
+  "author": "itlixiaolong",
+  "license": "MIT",
+  "devDependencies": {
+    "@vue/cli-service-global": "^4.5.9",
+    "less": "^3.13.0",
+    "less-loader": "^7.1.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/itlixiaolong/email-address.git"
+  },
+  "dependencies": {
+    "@fortawesome/fontawesome-free": "^5.15.1",
+    "font-awesome": "^4.7.0"
+  }
+}
