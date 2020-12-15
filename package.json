@@ -1,6 +1,6 @@
 {
   "name": "email-address",
-  "version": "1.0.1",
+  "version": "1.0.0",
   "description": "A can inserted, edited, saved based on vue2.0, similar to QQ mailbox, 163 mailbox email address component",
   "keywords": [
     "email",

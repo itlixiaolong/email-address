@@ -46,4 +46,4 @@ export default {
 
 ```
 - 效果
-![avatar](http://itlixiaolong.xyz/my_npm_packages_imgs/email_address.jpg)
+![result](http://itlixiaolong.xyz/my_npm_packages_imgs/email_address.jpg)
