@@ -1,10 +1,11 @@
 {
-  "name": "email-address",
+  "name": "vue-email-address",
   "version": "1.0.0",
   "description": "A can inserted, edited, saved based on vue2.0, similar to QQ mailbox, 163 mailbox email address component",
   "keywords": [
     "email",
     "QQ mailbox",
+    "vue-email-address",
     "email-address",
     "email-component",
     "edited email"
@@ -27,7 +28,6 @@
     "url": "https://github.com/itlixiaolong/email-address.git"
   },
   "dependencies": {
-    "@fortawesome/fontawesome-free": "^5.15.1",
-    "font-awesome": "^4.7.0"
+    "vue-email-address": "^1.0.3"
   }
 }

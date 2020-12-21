@@ -22,6 +22,7 @@
 			class="address_input" 
 			ref="contentInput" 
 			v-model="localAddress" 
+			@input="handleEdit" 
 			@blur="handlleConfirmEdit">
 		<div 
 			class="address_text" 
@@ -73,17 +74,13 @@ methods: {
 		this.$emit('delete',this.id)
 	},
 	handleInput(e){
-		if(/^[\u4e00-\u9fa5]+$/.test(e.target.value)){
-			alert('不支持汉字')
-			return
-		}
 		this.preFixContent=e.target.value
+		this.$emit('input',e.target.value)
+	},
+	handleEdit(){
+		this.$emit('input',this.localAddress)
 	},
 	handleInsert(){
-		if(/^[\u4e00-\u9fa5]+$/.test(this.preFixContent)){
-			alert('不支持汉字')
-			return
-		}
 		if(this.preFixContent){
 			this.$emit('insert',this.preFixContent,this.id)
 		}
@@ -114,8 +111,7 @@ watch:{
 			return
 		}
 		this.$nextTick(()=>{
-
-			this.width=this.inputDom.offsetWidth
+			this.width=this.inputDom.offsetWidth+5
 		})
 
 	}

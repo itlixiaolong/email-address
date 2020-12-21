@@ -1,12 +1,11 @@
 <template>
 <div class="App">
-  <email-address v-model="list"></email-address>
+  <email-address v-model="list" @onInput="handleInput" @onBlur="handleBlur"></email-address>
 </div>
 </template>
 
 <script>
 import EmailAddress from './src/email_address.vue'
-import '@fortawesome/fontawesome-free/js/all'
 export default {
 name:'App',
 components:{
@@ -24,6 +23,17 @@ data () {
     onDelete() {},
     handleClick() {
       this.show = !this.show
+    },
+    handleInput(data,list){
+      console.log(data);
+      console.log(list);
+    },
+    handleBlur(currentEmail,emailList){
+      if(/[\u4e00-\u9fa5]+/.test(currentEmail)){
+        alert('不支持汉字')
+        return false
+      }
+      console.log(emailList);
     }
   }
 }

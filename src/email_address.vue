@@ -5,9 +5,12 @@
 		:address="item"
 		:key="index"
 		:id="index"
+		:ref="`item_${index}`"
 		@insert="handleInsert"
 		@delete="handleDelete"
 		@update="handleUpdate"
+		@input="handleInput"
+		v-on="$listeners"
 	/>
 	<div class="post_fix_content">
 		<input 
@@ -15,7 +18,7 @@
 			class="post_fix"
 			:style="{width:width+'px'}" 
 			:value="postFixContent"
-			@input="handleInput"
+			@input="handleInputPostFix"
 			@blur="handleInsertTailOfList">
 		<div 
 			class="hidden_content" 
@@ -56,12 +59,30 @@ mounted () {
 },
 methods: {
 	handleUpdate(data,index){
+		if(this.$listeners.onBlur){
+			let flag=	this.$listeners.onBlur(data,index,this.list)
+			if(!flag){
+				this.$nextTick(()=>{
+					this.$refs[`item_${index}`][0].localAddress=this.list[index]
+				})
+					return
+			}
+		}
 		let arr=[]
 		arr[index]=data
 		this.list=Object.assign([],this.list,arr)
 		this.$emit('update:value',this.list)
 	},
 	handleInsert(data,index){
+		if(this.$listeners.onBlur){
+			let flag=	this.$listeners.onBlur(data,index,this.list)
+			if(!flag){
+				this.$nextTick(()=>{
+					this.$refs[`item_${index}`][0].preFixContent=''
+				})
+					return
+			}
+		}
 		this.list.splice(index,0,data)
 		this.$emit('update:value',this.list)
 	},
@@ -69,19 +90,21 @@ methods: {
 		this.list.splice(index,1)
 		this.$emit('update:value',this.list)
 	},
-	handleInput(e){
-		if(/^[\u4e00-\u9fa5]+$/.test(e.target.value)){
-			alert('不支持汉字')
-			return
-		}
+	handleInput(data){
+		this.$emit('onInput',data,this.list)
+	},
+	handleInputPostFix(e){
 		this.postFixContent=e.target.value
 	},
 	handleInsertTailOfList(){
-		if(/^[\u4e00-\u9fa5]+$/.test(this.postFixContent)){
-			alert('不支持汉字')
-			return
-		}
 		if(this.postFixContent){
+			if(this.$listeners.onBlur){
+				let flag=	this.$listeners.onBlur(this.postFixContent,this.list.length,this.list)
+				if(!flag){
+					this.postFixContent=''
+					return
+				}
+			}
 			this.list.push(this.postFixContent)
 			this.$emit('update:value',this.list)
 		}
